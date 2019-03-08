@@ -74,19 +74,13 @@ function monCocktailGeneriqueLucas2($cocktail, $listeIngredients){
 
 function monCocktailGenerique($cocktail, $listeIngredients){
 	echo "j ai fabriqué ".$cocktail." avec : ";
-	// faire tourner le foreach pour les 3 1ers éléments et sortir pour le 4ème
-	// => arrêter le foreach avant ..
+
 	$nbElement = count($listeIngredients);
 	for($i=0;$i < $nbElement;$i++){
-		// On essaie d'arriver au dernier élément pour afficher une retour à la ligne (\n)
-		// On a 4 éléments dans le tableau dont les index vont de 0 à 3
-		// Donc on le dernier index = au nb d'éléments - 1 = 3
-		// != (différent) ou == (égal) pour comparer les contenus 
-		// !== ou === pour comparer les contenus + les types de variables
+
 		if($i != $nbElement-1){
 			echo $listeIngredients[$i].", ";
 		}
-		// sinon on affiche l'élément avec la virgule
 		else{
 			echo $listeIngredients[$i].".\n";
 		}
