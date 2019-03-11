@@ -12,8 +12,8 @@ ini_set("display_errors", 1);
 class Personnage{
     // On initialise les attributs
     private $_name;
-    private $_strength;
-    private $_defense;
+    public $_strength;
+    public $_defense;
     private $_healthPoint = 5;
     private $_experience = 0; 
 
@@ -71,7 +71,7 @@ class Personnage{
         else {
             $this->setExperience();
             $adversaire->cutHealthPoint();
-            return $this->_name." : Perdu";         
+            return $this->_name." : Gagné";         
         }
         // réponse au combat
     }
@@ -90,16 +90,16 @@ class Personnage{
 $personnage1 = new Personnage("chris");
 
 /* On affiche les attributs de l'objet chris */
-echo '<pre>';
-print_r($chris);
-echo '</pre>';
+// echo '<pre>';
+// print_r($chris);
+// echo '</pre>';
 
 // Je créé une variable qui s'appelle $pierre
 /* $pierre est un objet qui a été créé suite à l'instanciation de la classe Personnage */ 
 $personnage2 = new Personnage("pierre");
-echo '<pre>';
-print_r($pierre);
-echo '</pre>';
+// echo '<pre>';
+// print_r($pierre);
+// echo '</pre>';
 
 
 /* 
@@ -117,69 +117,38 @@ avec pour paramètre l'objet pierre
 $i=1;
 while($personnage1->getHealthPoint() != NULL AND $personnage2->getHealthPoint() != NULL){    
     //on inverse les variables à chaque itération de la boucle
-    echo "---------------".$personnage1->getName()." ATTAQUE ".$personnage2."---------------<br>"; 
-    $resultCombat= $personnage1->fight($$personnage2)." <br>";
-
+    echo "---------------".$personnage1->getName()." ATTAQUE ".$personnage2->getName()."---------------<br>"; 
     echo "---------------".$personnage1->getName()."---------------<br>";
     echo "expérience :".$personnage1->getExperience()." <br>";
-    echo "HealthPoint :".$personnage1->getHealthPoint()." <br>";    
+    echo "HealthPoint :".$personnage1->getHealthPoint()." <br>";  
+    echo "force :".$personnage1->_strength." <br>";  
+    echo "force :".$personnage1->_defense." <br>";            
     echo "---------------".$personnage2->getName()."---------------<br>";
     echo "expérience :".$personnage2->getExperience()." <br>";
     echo "HealthPoint :".$personnage2->getHealthPoint()." <br>";    
+    echo "force :".$personnage2->_strength." <br>";     
+    echo "force :".$personnage2->_defense." <br>";         
     echo "------------------------------<br>";
+    $resultCombat= $personnage1->fight($personnage2)." <br>";    
     echo "<br><b>RESULTAT MANCHE ".$i.": ".$resultCombat."</b><br>";
 
     echo "---------------FIN DE LA MANCHE---------------<br><br>"; 
     $tmpPers1=$personnage1;
     $personnage1=$personnage2;
     $personnage2=$tmpPers1;
-    // echo $pers1." ".$pers2;
-    // if($i==2)
-    //     exit();
     $i++;
 }
 $i--;
-if($$personnage1->getHealthPoint() == 0 ){
+if($personnage1->getHealthPoint() == 0 ){
     echo "---------------RESULTAT---------------<br>";
-    echo $personnage1." a Perdu et ".$personnage2." a Gagné le combat en ".$i." manches.<br>";
+    echo $personnage1->getName()." a Perdu et ".$personnage2->getName()." a Gagné le combat en ".$i." manches.<br>";
     echo "--------------------------------------<br>";              
 }
 else{
     echo "---------------RESULTAT---------------<br>";
-    echo $personnage2." a Perdu et ".$personnage1." a Gagné le combat en ".$i." manches.<br>";
+    echo $personnage2->getName()." a Perdu et ".$personnage1->getName()." a Gagné le combat en ".$i." manches.<br>";
     echo "--------------------------------------<br>";
 }
-
-// echo $pierre->fight($chris)." \n";
-
-// while($pierre->getHealthPoint() != NULL AND $chris->getHealthPoint() != NULL){
-//     echo "expérience de pierre :".$pierre->getExperience()." <br>";    
-//     echo "expérience de pierre :".$pierre->getExperience()." <br>";
-//     echo "expérience de chris :".$chris->getExperience()." <br>";
-    
-//     echo "HealthPoint de pierre :".$pierre->getHealthPoint()." <br>";
-//     echo "HealthPoint de chris :".$chris->getHealthPoint()." <br>";    
-// }
-
-//echo $pierre->fight($chris)." \n";
-
-// var_dump($personnage1);
-// var_dump($personnage2);
-
-//echo $personnage1->getStrength();
-
-
-
-
-// pierre attaque chris
-// on affiche les perfs
-// on affiche le résulat
-
-// chris attaque pierre
-// on affiche les perfs
-// on affiche le résulat
-
-
 /*
 
 Je créé un objet chris
@@ -197,6 +166,34 @@ Je lance un combat en X manches tant que pierre et chris ont des points de vie {
     j'inverse perso1 et perso2 pour qu'au tour suivant ce soit perso2 qui combate perso1        
 }
 
+On veut organiser un combat entre 2 entre 2 personnages
+On veut que les 2 personnages s'attaque l'un et l'autre successivementdonc
+chris attaque pierre puis pierre attaque chris 
+jusqu'à ce que l'un des deux ne dispose plus de point de vie
+
+Au départ : 
+on génère des spécifications aux deux personnages: 
+    - force : générée aléatoirement à chaque manche
+    - défense : générée aléatoirement à chaque manche
+    - points de vie : 10
+
+Durant le combat il y a plusieurs manches durant lesquelles 
+l'un des deux personnages gagne et l'autre perd
+
+en entrée de la méthode on a les spec des 2 joueurs en sortie :
+- le gagnant 
+- on fait perdre 1 PV au perdant
+- on augmente de 1 l'XP du gagnant
+
+on boucle pour tourner jusqu'à ce qu'un des deux personnages n'ait plus de PV
+
+on veut que ce ne soit pas le même perso qui attaque à chaque manche
 
 
-$lilian
+
+
+
+
+
+
+*/
