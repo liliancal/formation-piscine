@@ -18,7 +18,7 @@ class Personnage{
     private $_experience = 0; 
 
     /* 
-    Le construct est une fonction qui est appelée 
+    Le construct est une méthode qui est appelée 
     automatiquement dès l'instanciation d'une classe 
     et donc la création d'un objet
 
@@ -77,8 +77,6 @@ class Personnage{
     }
 }
 
-$personnage1="chris";
-$personnage2="pierre";
 
 // $mavariable= "Lilian";
 // echo $mavariable;
@@ -89,7 +87,7 @@ $personnage2="pierre";
 
 /* chris est un objet qui a été créé suite à l'instanciation de la classe Personnage */
 // Je créé une variable qui s'appelle $chris 
-$$personnage1 = new Personnage($personnage1);
+$personnage1 = new Personnage("chris");
 
 /* On affiche les attributs de l'objet chris */
 echo '<pre>';
@@ -98,7 +96,7 @@ echo '</pre>';
 
 // Je créé une variable qui s'appelle $pierre
 /* $pierre est un objet qui a été créé suite à l'instanciation de la classe Personnage */ 
-$$personnage2 = new Personnage($personnage2);
+$personnage2 = new Personnage("pierre");
 echo '<pre>';
 print_r($pierre);
 echo '</pre>';
@@ -116,27 +114,25 @@ On affiche le résultat de la méthode fight depuis l'objet chris
 avec pour paramètre l'objet pierre 
 */
 
-$pers1=$personnage1;
-$pers2=$personnage2;
 $i=1;
-while($$personnage1->getHealthPoint() != NULL AND $$personnage2->getHealthPoint() != NULL){    
+while($personnage1->getHealthPoint() != NULL AND $personnage2->getHealthPoint() != NULL){    
     //on inverse les variables à chaque itération de la boucle
-    echo "---------------".$pers1." ATTAQUE ".$pers2."---------------<br>"; 
-    $resultCombat= $$pers1->fight($$pers2)." <br>";
+    echo "---------------".$personnage1->getName()." ATTAQUE ".$personnage2."---------------<br>"; 
+    $resultCombat= $personnage1->fight($$personnage2)." <br>";
 
-    echo "---------------".$pers1."---------------<br>";
-    echo "expérience :".$$pers1->getExperience()." <br>";
-    echo "HealthPoint :".$$pers1->getHealthPoint()." <br>";    
-    echo "---------------".$pers2."---------------<br>";
-    echo "expérience :".$$pers2->getExperience()." <br>";
-    echo "HealthPoint :".$$pers2->getHealthPoint()." <br>";    
+    echo "---------------".$personnage1->getName()."---------------<br>";
+    echo "expérience :".$personnage1->getExperience()." <br>";
+    echo "HealthPoint :".$personnage1->getHealthPoint()." <br>";    
+    echo "---------------".$personnage2->getName()."---------------<br>";
+    echo "expérience :".$personnage2->getExperience()." <br>";
+    echo "HealthPoint :".$personnage2->getHealthPoint()." <br>";    
     echo "------------------------------<br>";
     echo "<br><b>RESULTAT MANCHE ".$i.": ".$resultCombat."</b><br>";
 
     echo "---------------FIN DE LA MANCHE---------------<br><br>"; 
-    $tmpPers1=$pers1;
-    $pers1=$pers2;
-    $pers2=$tmpPers1;
+    $tmpPers1=$personnage1;
+    $personnage1=$personnage2;
+    $personnage2=$tmpPers1;
     // echo $pers1." ".$pers2;
     // if($i==2)
     //     exit();

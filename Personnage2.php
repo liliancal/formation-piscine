@@ -116,27 +116,25 @@ On affiche le résultat de la méthode fight depuis l'objet chris
 avec pour paramètre l'objet pierre 
 */
 
-$pers1=$personnage1;
-$pers2=$personnage2;
 $i=1;
 while($$personnage1->getHealthPoint() != NULL AND $$personnage2->getHealthPoint() != NULL){    
     //on inverse les variables à chaque itération de la boucle
-    echo "---------------".$pers1." ATTAQUE ".$pers2."---------------<br>"; 
-    $resultCombat= $$pers1->fight($$pers2)." <br>";
+    echo "---------------".$personnage1." ATTAQUE ".$personnage2."---------------<br>"; 
+    $resultCombat= $$personnage1->fight($$personnage2)." <br>";
 
-    echo "---------------".$pers1."---------------<br>";
-    echo "expérience :".$$pers1->getExperience()." <br>";
-    echo "HealthPoint :".$$pers1->getHealthPoint()." <br>";    
-    echo "---------------".$pers2."---------------<br>";
-    echo "expérience :".$$pers2->getExperience()." <br>";
-    echo "HealthPoint :".$$pers2->getHealthPoint()." <br>";    
+    echo "---------------".$personnage1."---------------<br>";
+    echo "expérience :".$$personnage1->getExperience()." <br>";
+    echo "HealthPoint :".$$personnage1->getHealthPoint()." <br>";    
+    echo "---------------".$personnage2."---------------<br>";
+    echo "expérience :".$$personnage2->getExperience()." <br>";
+    echo "HealthPoint :".$$personnage2->getHealthPoint()." <br>";    
     echo "------------------------------<br>";
     echo "<br><b>RESULTAT MANCHE ".$i.": ".$resultCombat."</b><br>";
 
     echo "---------------FIN DE LA MANCHE---------------<br><br>"; 
-    $tmpPers1=$pers1;
-    $pers1=$pers2;
-    $pers2=$tmpPers1;
+    $tmpPers1=$personnage1;
+    $personnage1=$personnage2;
+    $personnage2=$tmpPers1;
     // echo $pers1." ".$pers2;
     // if($i==2)
     //     exit();
